@@ -13,8 +13,31 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        archivesBaseName = "androidbasetemplate.$versionName-$versionCode"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "mode"
+    productFlavors{
+
+        create("dev"){
+            dimension = "mode"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
+
+        create("pre"){
+            dimension = "mode"
+            applicationIdSuffix = ".pre"
+            versionNameSuffix = "-pre"
+        }
+
+        create("live"){
+            dimension = "mode"
+            applicationIdSuffix = ".live"
+            versionNameSuffix = "-live"
+        }
+
     }
 
     buildTypes {
@@ -23,10 +46,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
